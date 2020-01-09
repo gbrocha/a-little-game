@@ -1,0 +1,11 @@
+@import "./config/config.scss";
+
+#screen {
+  margin: 20px;
+  border: 1px solid #444;
+  width: 400px;
+  height: 400px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+}

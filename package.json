@@ -1,0 +1,30 @@
+{
+  "name": "a-little-game",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "gulp",
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "repository": "https://github.com/rochagbr/a-little-game.git",
+  "author": "Gabriel <bieloky@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babelify": "^10.0.0",
+    "browser-sync": "^2.26.7",
+    "browserify": "^16.5.0",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "nodemon": "^2.0.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  }
+}
