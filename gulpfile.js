@@ -68,7 +68,7 @@ function nodemon(done) {
   var started = false;
 
   return gulpNodemon({
-    script: "server.js",
+    script: "server.mjs",
     ignore: ["gulpfile.js", "config/", "node_modules/"]
   }).on("start", function() {
     if (!started) {
