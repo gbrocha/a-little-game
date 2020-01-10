@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "gulp",
-    "start": "node server.js"
+    "start": "node server.mjs"
   },
-  "main": "server.js",
+  "main": "server.mjs",
   "repository": "https://github.com/rochagbr/a-little-game.git",
   "author": "Gabriel <bieloky@gmail.com>",
   "license": "MIT",
