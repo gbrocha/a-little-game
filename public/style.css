@@ -1,1 +1,1 @@
-*{box-sizing:border-box;margin:0;padding:0}body{display:flex;min-height:100vh;width:100%}#screen{margin:20px;border:1px solid #444;width:400px;height:400px;image-rendering:pixelated;image-rendering:crisp-edges;image-rendering:-moz-crisp-edges}
+*{box-sizing:border-box;margin:0;padding:0}body{background:#222;display:flex;min-height:100vh;width:100%}#screen{margin:20px;border:10px solid #444;background:#777;width:400px;height:400px;image-rendering:pixelated;image-rendering:crisp-edges;image-rendering:-moz-crisp-edges}

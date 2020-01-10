@@ -23,7 +23,7 @@ function styles() {
 }
 
 function copyHtml() {
-  return gulp.src(["./*.html"]).pipe(gulp.dest("public/"));
+  return gulp.src(["./frontend/*.html"]).pipe(gulp.dest("public/"));
 }
 
 function scripts() {

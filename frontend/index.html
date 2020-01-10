@@ -11,6 +11,121 @@
   <body>
     <canvas id="screen" width="10" height="10"></canvas>
 
-    <script src="index.js" type="module"></script>
+    <!-- <script src="index.js" type="module"></script> -->
+    <script>
+      const canvas = document.getElementById("screen");
+      const context = canvas.getContext("2d"),
+        currentPlayerId = "player1";
+
+      function Game() {
+        const state = {
+          players: {
+            player1: { x: 2, y: 2 },
+            player2: { x: 4, y: 6 }
+          },
+          fruits: {
+            fruit1: { x: 3, y: 7 }
+          },
+          screen: {
+            width: 10,
+            height: 10
+          }
+        };
+
+        function movePlayer(command) {
+          const { playerId, key } = command;
+          const { players, screen } = state;
+          const player = players[playerId];
+          console.log(`Moving ${playerId} with ${key}`);
+
+          if (key == "ArrowUp" && player.y > 0) {
+            player.y = player.y - 1;
+            return;
+          }
+
+          if (key == "ArrowRight" && player.x < screen.width - 1) {
+            player.x = player.x + 1;
+            return;
+          }
+
+          if (key == "ArrowDown" && player.y < screen.height - 1) {
+            player.y = player.y + 1;
+            return;
+          }
+
+          if (key == "ArrowLeft" && player.x > 0) {
+            player.x = player.x - 1;
+            return;
+          }
+        }
+
+        return {
+          movePlayer,
+          state
+        };
+      }
+
+      function KeyboardListener() {
+        const state = {
+          observers: []
+        };
+
+        function subscribe(observerFunction) {
+          state.observers.push(observerFunction);
+        }
+
+        function notifyAll(command) {
+          console.log(`Notifying ${state.observers.length} observers`);
+
+          for (const observerFunction of state.observers) {
+            observerFunction(command);
+          }
+        }
+
+        document.addEventListener("keydown", handleKeyDown);
+
+        function handleKeyDown(evt) {
+          const { key } = evt;
+
+          const command = {
+            playerId: currentPlayerId,
+            key
+          };
+
+          notifyAll(command);
+        }
+
+        return {
+          subscribe
+        };
+      }
+
+      const game = new Game();
+      const keyboardListener = new KeyboardListener();
+      keyboardListener.subscribe(game.movePlayer);
+
+      renderScreen();
+
+      function renderScreen() {
+        const { screen, players, fruits } = game.state;
+        context.clearRect(0, 0, screen.width, screen.height);
+
+        for (const playerId in players) {
+          const player = players[playerId];
+          const { x, y } = player;
+          context.fillStyle = "#fff";
+          context.fillRect(x, y, 1, 1);
+        }
+
+        for (const fruitId in fruits) {
+          const fruit = fruits[fruitId];
+          const { x, y } = fruit;
+          context.fillStyle = "#e8ea34";
+          context.fillRect(x, y, 1, 1);
+        }
+
+        requestAnimationFrame(renderScreen);
+      }
+    </script>
   </body>
 </html>
