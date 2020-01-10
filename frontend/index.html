@@ -36,27 +36,43 @@
           const { playerId, key } = command;
           const { players, screen } = state;
           const player = players[playerId];
+
+          const acceptedCommands = {
+            ArrowUp(player) {
+              if (player.y > 0) {
+                player.y = player.y - 1;
+                return;
+              }
+            },
+            ArrowRight(player) {
+              if (player.x < screen.width - 1) {
+                player.x = player.x + 1;
+                return;
+              }
+            },
+            ArrowDown(player) {
+              if (player.y < screen.height - 1) {
+                player.y = player.y + 1;
+                return;
+              }
+            },
+            ArrowLeft(player) {
+              if (player.x > 0) {
+                player.x = player.x - 1;
+                return;
+              }
+            }
+          };
+
+          const currentCommand = acceptedCommands[key];
+
+          if (!currentCommand) {
+            console.log("This command is unknown");
+            return;
+          }
+
+          currentCommand(player);
           console.log(`Moving ${playerId} with ${key}`);
-
-          if (key == "ArrowUp" && player.y > 0) {
-            player.y = player.y - 1;
-            return;
-          }
-
-          if (key == "ArrowRight" && player.x < screen.width - 1) {
-            player.x = player.x + 1;
-            return;
-          }
-
-          if (key == "ArrowDown" && player.y < screen.height - 1) {
-            player.y = player.y + 1;
-            return;
-          }
-
-          if (key == "ArrowLeft" && player.x > 0) {
-            player.x = player.x - 1;
-            return;
-          }
         }
 
         return {
